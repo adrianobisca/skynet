@@ -9,24 +9,31 @@
 </head>
 
 <body>
-
-    <div class="d-flex justify-content-center">
-        <!-- carousel -->
-        <div class=" w-50 py-5">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators"></ol>
-                <div class="carousel-inner"></div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+    <div class="container">
+           <div class="row">
+            <!-- carousel -->
+            <div class="col-12">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators"></ol>
+                    <div class="carousel-inner"></div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
             </div>
+            <!-- fim carousel -->
+            
+            <!-- lista filmes -->
+            <div class="col-12 py-5">
+                <div id="listaFilmes"></div>
+            </div>
+            <!-- fim lista filmes -->
         </div>
-        <!-- fim carousel -->
     </div>
 
 
@@ -48,6 +55,66 @@
             
             var $response = data; 
             var $highlights = $response[0].items;
+            var $movies = $response[2].movies;
+            var $organizedMovies = [];
+
+            var $comedia = $movies.filter(function (movie) {
+                return movie.categories.includes("Comédia");
+            });
+            $organizedMovies.push({"Comédia": $comedia});
+
+            var $acaoAventura = $movies.filter(function (movie) {
+                return movie.categories.includes("Ação e Aventura");
+            });
+            $organizedMovies.push({"Ação e Aventura": $acaoAventura});
+
+            var $infantil = $movies.filter(function (movie) {
+                return movie.categories.includes("Infantil");
+            });
+            $organizedMovies.push({"Infantil": $infantil});
+
+            var $animacao = $movies.filter(function (movie) {
+                return movie.categories.includes("Animação");
+            });
+            $organizedMovies.push({"Animação": $animacao});
+
+            var $fantasia = $movies.filter(function (movie) {
+                return movie.categories.includes("Fantasia");
+            });
+            $organizedMovies.push({"Fantasia": $fantasia});
+
+            var $suspense = $movies.filter(function (movie) {
+                return movie.categories.includes("Suspense");
+            });
+            $organizedMovies.push({"Suspense": $suspense});
+
+            var $terror = $movies.filter(function (movie) {
+                return movie.categories.includes("Terror");
+            });
+            $organizedMovies.push({"Terror": $terror});
+
+            var $drama = $movies.filter(function (movie) {
+                return movie.categories.includes("Drama");
+            });
+            $organizedMovies.push({"Drama": $drama});
+
+            var $ficcao = $movies.filter(function (movie) {
+                return movie.categories.includes("Ficção Científica");
+            });
+            $organizedMovies.push({"Ficção Científica": $ficcao});
+
+            var $biografia = $movies.filter(function (movie) {
+                return movie.categories.includes("Biografia");
+            });
+            $organizedMovies.push({"Biografia": $biografia});
+
+            var $musical = $movies.filter(function (movie) {
+                return movie.categories.includes("Musical");
+            });
+            $organizedMovies.push({"Musical": $musical});
+
+
+            console.log("lista organizada: ", $organizedMovies);
 
             // carrousel dinamico
             $.each( $highlights, function(k, v){
@@ -60,7 +127,31 @@
                     `<li data-target="#carouselExampleIndicators" data-slide-to=" `+ k +` " class="carouselExampleIndicators"></li>`
                 ).find('.carouselExampleIndicators').first().addClass("active");
             });
-
+            // fim carousel dinamico
+            
+            // lista filmes dinamico
+            $.each( $organizedMovies , function(k, v){
+                // categorias
+                $("#listaFilmes").append(
+                    `<div class="w-100">
+                    <p class="text-light bg-dark">`+ Object.keys(v) +`</p>
+                    <div class="filmes-` + k + ` row"></div>
+                    </div>`
+                );
+                // filmes por categoria
+                $.each(Object.values(v), function(){
+                    $.each(this, function(index, filme){
+                        $(`.filmes-`+ k +``).append(
+                            `<div class="col-2 my-2">
+                                <div class="border border-primary rounded p-2">
+                                    <p class="font-weight-bold">` + filme.title + `</p>
+                                </div>
+                            </div>`
+                        );
+                    })
+                })
+            })
+            // fim lista filmes dinamico
             
         });
     
