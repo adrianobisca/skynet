@@ -121,7 +121,7 @@
             $.each( $highlights, function(k, v){
                 $(".carousel-inner").append(
                     `<div class="carousel-item">
-                    <img class="d-block w-100" src="` + v.images[0].url + `" alt="Outros slide">
+                    <img class="d-block w-100" src="` + v.images[0].url + `" alt="` + v.description + `">
                     </div>`
                 ).find('.carousel-item').first().addClass("active");
                 $(".carousel-indicators").append(
@@ -135,8 +135,8 @@
                 // categorias
                 $("#listaFilmes").append(
                     `<div class="w-100">
-                    <p class="text-light bg-dark">`+ Object.keys(v) +`</p>
-                    <div class="filmes-` + k + ` row"></div>
+                    <p class="font-weight-bold">`+ Object.keys(v) +`</p>
+                    <div class="filmes-` + k + ` row mb-3"></div>
                     </div>`
                 );
                 // filmes por categoria
