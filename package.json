@@ -1,0 +1,25 @@
+{
+  "name": "skynet",
+  "version": "1.0.0",
+  "description": "Portal de filmes sob demanda espelhando o portal do SkyPlay. Trabalho em andamento.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrianobisca/skynet.git"
+  },
+  "author": "Adriano Paradiso Bisca e Silva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adrianobisca/skynet/issues"
+  },
+  "homepage": "https://github.com/adrianobisca/skynet#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0",
+    "@popperjs/core": "^2.0.4",
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1"
+  }
+}
