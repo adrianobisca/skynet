@@ -1,32 +1,43 @@
-$(function () {
-    
-    var topics = {};
- 
-    jQuery.Topic = function( id ) {
-      var callbacks, method,
-        topic = id && topics[ id ];
-     
-      if ( !topic ) {
-        callbacks = jQuery.Callbacks();
-        topic = {
-          publish: callbacks.fire,
-          subscribe: callbacks.add,
-          unsubscribe: callbacks.remove
-        };
-        if ( id ) {
-          topics[ id ] = topic;
-        }
+$(function() {
+  var topics = {};
+
+  jQuery.Topic = function(id) {
+    var callbacks,
+      method,
+      topic = id && topics[id];
+
+    if (!topic) {
+      callbacks = jQuery.Callbacks();
+      topic = {
+        publish: callbacks.fire,
+        subscribe: callbacks.add,
+        unsubscribe: callbacks.remove
+      };
+      if (id) {
+        topics[id] = topic;
       }
-      return topic;
-    };
+    }
+    return topic;
+  };
 
-    var colecaoFilmes = new ColecaoFilmes();
-    colecaoFilmes.makeRequest();
+  $(document).ready(function() {
+    var swiper = new Swiper(".swiper-container", {
+      slidesPerView: 6,
+      spaceBetween: 30,
+      freeMode: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      }
+    });
+  });
 
-    var colecaoFilmesOrganizados = new ColecaoFilmesOrganizados(colecaoFilmes);
-    colecaoFilmesOrganizados.subscribers();
+  var colecaoFilmes = new ColecaoFilmes();
+  colecaoFilmes.makeRequest();
 
-    var colecaoHighlights = new ColecaoHighlights(colecaoFilmes);
-    colecaoHighlights.subscribers();
+  var colecaoFilmesOrganizados = new ColecaoFilmesOrganizados(colecaoFilmes);
+  colecaoFilmesOrganizados.subscribers();
 
+  var colecaoHighlights = new ColecaoHighlights(colecaoFilmes);
+  colecaoHighlights.subscribers();
 });
