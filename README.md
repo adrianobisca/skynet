@@ -1,7 +1,11 @@
 # PORTAL SKYPLAY
 
-Portal de filmes sob demanda espelhando o portal do SkyPlay. Trabalho em andamento.
+Portal de filmes sob demanda espelhando o portal do SkyPlay. 
 
-Feito somente no index.html para agilizar o desenvolvimento, posteriormente pode ser separado em vários arquivos como se é de esperar de uma aplicação padrão.
+Trabalho em andamento.
 
-Utilizado CDNs de JQuery, BootStrap e FontAwesome.
+
+Libs utilizadas:
+- JQuery
+- BootStrap
+- FontAwesome.
